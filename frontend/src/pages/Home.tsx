@@ -338,9 +338,9 @@ const Home: React.FC = () => {
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="flex justify-center lg:justify-end relative"
+                className="flex  justify-center lg:justify-end relative "
               >
-                <div className="relative w-full max-w-lg">
+                <div className="  relative w-full max-w-lg">
                   {/* Institution Logos Display */}
                   <motion.div
                     animate={{
@@ -355,7 +355,7 @@ const Home: React.FC = () => {
                     className="relative w-80 h-96 lg:w-96 lg:h-[450px] mx-auto"
                   >
                     {/* Three Institutional Logos */}
-                    <div className="absolute inset-0 flex items-center justify-center space-x-8">
+                    <div className="absolute inset-0 flex  items-center  justify-center space-x-8 ">
                       {/* BVM Logo */}
                       <motion.div
                         initial={{ scale: 0, opacity: 0 }}
@@ -369,7 +369,7 @@ const Home: React.FC = () => {
                         whileHover={{ scale: 1.1 }}
                         className="relative"
                       >
-                        <div className="w-40 h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-xl border-4 border-blue-300 overflow-hidden">
+                        <div className=" w-24 h-24 sm:w-40 sm:h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-xl border-4 border-blue-300 overflow-hidden">
                           <img
                             src="/BVM Logo-1.png"
                             alt="BVM College"
@@ -402,7 +402,7 @@ const Home: React.FC = () => {
                         whileHover={{ scale: 1.1 }}
                         className="relative"
                       >
-                        <div className="w-40  h-40 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-xl border-4 border-purple-300 overflow-hidden">
+                        <div className=" w-24 h-24 sm:w-40  sm:h-40 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center shadow-xl border-4 border-purple-300 overflow-hidden">
                           <img
                             src="/VLlogo1.PNG"
                             alt="Vishvakarma Lekhan"
@@ -436,7 +436,7 @@ const Home: React.FC = () => {
                         whileHover={{ scale: 1.1 }}
                         className="relative"
                       >
-                        <div className="w-40 h-40 bg-gradient-to-br from-green-100 to-green-200   rounded-full flex items-center justify-center shadow-xl border-4 border-green-300 overflow-hidden">
+                        <div className=" w-24 h-24 sm:w-40 sm:h-40 bg-gradient-to-br from-green-100 to-green-200   rounded-full flex items-center justify-center shadow-xl border-4 border-green-300 overflow-hidden">
                           <img
                             src="/CVM Logo.png"
                             alt="CVM Logo"

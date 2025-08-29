@@ -139,34 +139,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-6">
-            <div className="text-center">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
-                Stay Updated
-              </h4>
-              <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
-                Get the latest updates about new features and improvements.
-              </p>
-              <div className="flex max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-l-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-r-lg font-medium hover:opacity-90 transition-opacity duration-300"
-                >
-                  Subscribe
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Section */}
         <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
           <div className="flex flex-col md:flex-row justify-between items-center">

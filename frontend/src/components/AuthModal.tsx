@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useAuthStore } from '../store/authStore';
-import { useThemeStore } from '../store/themeStore';
-import { Eye, EyeOff, User, Mail, Lock, Building, Hash, X, AlertCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { motion, AnimatePresence } from "framer-motion";
+import { useAuthStore } from "../store/authStore";
+import { useThemeStore } from "../store/themeStore";
+import {
+  Eye,
+  EyeOff,
+  User,
+  Mail,
+  Lock,
+  Building,
+  Hash,
+  X,
+  AlertCircle,
+} from "lucide-react";
 
 interface LoginFormData {
   email: string;
@@ -34,17 +44,16 @@ export const AuthModal: React.FC<{
   const handleLogin = async (data: LoginFormData) => {
     try {
       await login(data.email, data.password);
-      
       onClose();
     } catch (error) {
-      // Error is handled by the store
+      // Error handled by the store
     }
   };
 
   const handleRegister = async (data: RegisterFormData) => {
     if (data.password !== data.confirmPassword) {
-      registerForm.setError('confirmPassword', {
-        message: 'Passwords do not match'
+      registerForm.setError("confirmPassword", {
+        message: "Passwords do not match",
       });
       return;
     }
@@ -59,7 +68,7 @@ export const AuthModal: React.FC<{
       });
       onClose();
     } catch (error) {
-      // Error is handled by the store
+      // Error handled by the store
     }
   };
 
@@ -83,7 +92,7 @@ export const AuthModal: React.FC<{
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-              {isLogin ? 'Sign In' : 'Create Account'}
+              {isLogin ? "Sign In" : "Create Account"}
             </h2>
             <button
               onClick={onClose}
@@ -109,45 +118,54 @@ export const AuthModal: React.FC<{
           )}
 
           {isLogin ? (
-            <form onSubmit={loginForm.handleSubmit(handleLogin)} className="space-y-4">
+            <form
+              onSubmit={loginForm.handleSubmit(handleLogin)}
+              className="space-y-4"
+            >
+              {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Email Address
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...loginForm.register('email', {
-                      required: 'Email is required',
+                    {...loginForm.register("email", {
+                      required: "Email is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Invalid email address'
-                      }
+                        message: "Invalid email address",
+                      },
                     })}
                     type="email"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your email"
                   />
                 </div>
                 {loginForm.formState.errors.email && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {loginForm.formState.errors.email.message}
                   </p>
                 )}
               </div>
 
+              {/* Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Password
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...loginForm.register('password', {
-                      required: 'Password is required'
+                    {...loginForm.register("password", {
+                      required: "Password is required",
                     })}
-                    type={showPassword ? 'text' : 'password'}
-                    className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    type={showPassword ? "text" : "password"}
+                    className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your password"
                   />
                   <button
@@ -155,11 +173,15 @@ export const AuthModal: React.FC<{
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
                 {loginForm.formState.errors.password && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {loginForm.formState.errors.password.message}
                   </p>
                 )}
@@ -168,113 +190,132 @@ export const AuthModal: React.FC<{
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 
+                           focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 
+                           disabled:cursor-not-allowed font-medium"
               >
-                {isLoading ? 'Signing In...' : 'Sign In'}
+                {isLoading ? "Signing In..." : "Sign In"}
               </button>
             </form>
           ) : (
-            <form onSubmit={registerForm.handleSubmit(handleRegister)} className="space-y-4">
+            <form
+              onSubmit={registerForm.handleSubmit(handleRegister)}
+              className="space-y-4"
+            >
+              {/* Full Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Full Name
                 </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...registerForm.register('name', {
-                      required: 'Name is required',
+                    {...registerForm.register("name", {
+                      required: "Name is required",
                       minLength: {
                         value: 2,
-                        message: 'Name must be at least 2 characters'
-                      }
+                        message: "Name must be at least 2 characters",
+                      },
                     })}
                     type="text"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your full name"
                   />
                 </div>
                 {registerForm.formState.errors.name && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {registerForm.formState.errors.name.message}
                   </p>
                 )}
               </div>
 
+              {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Email Address
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...registerForm.register('email', {
-                      required: 'Email is required',
+                    {...registerForm.register("email", {
+                      required: "Email is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Invalid email address'
-                      }
+                        message: "Invalid email address",
+                      },
                     })}
                     type="email"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your email"
                   />
                 </div>
                 {registerForm.formState.errors.email && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {registerForm.formState.errors.email.message}
                   </p>
                 )}
               </div>
 
+              {/* Department & Roll Number */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     Department (Optional)
                   </label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
-                      {...registerForm.register('department')}
+                      {...registerForm.register("department")}
                       type="text"
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                                 bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                                 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="e.g., Computer Science"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     Roll Number (Optional)
                   </label>
                   <div className="relative">
                     <Hash className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
-                      {...registerForm.register('rollNumber')}
+                      {...registerForm.register("rollNumber")}
                       type="text"
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                                 bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                                 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="e.g., 21BCS001"
                     />
                   </div>
                 </div>
               </div>
 
+              {/* Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Password
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...registerForm.register('password', {
-                      required: 'Password is required',
+                    {...registerForm.register("password", {
+                      required: "Password is required",
                       minLength: {
                         value: 6,
-                        message: 'Password must be at least 6 characters'
-                      }
+                        message: "Password must be at least 6 characters",
+                      },
                     })}
-                    type={showPassword ? 'text' : 'password'}
-                    className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    type={showPassword ? "text" : "password"}
+                    className="w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter your password"
                   />
                   <button
@@ -282,33 +323,40 @@ export const AuthModal: React.FC<{
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
                 {registerForm.formState.errors.password && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {registerForm.formState.errors.password.message}
                   </p>
                 )}
               </div>
 
+              {/* Confirm Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Confirm Password
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
-                    {...registerForm.register('confirmPassword', {
-                      required: 'Please confirm your password'
+                    {...registerForm.register("confirmPassword", {
+                      required: "Please confirm your password",
                     })}
-                    type={showPassword ? 'text' : 'password'}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    type={showPassword ? "text" : "password"}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg 
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Confirm your password"
                   />
                 </div>
                 {registerForm.formState.errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                     {registerForm.formState.errors.confirmPassword.message}
                   </p>
                 )}
@@ -317,9 +365,11 @@ export const AuthModal: React.FC<{
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 
+                           focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 
+                           disabled:cursor-not-allowed font-medium"
               >
-                {isLoading ? 'Creating Account...' : 'Create Account'}
+                {isLoading ? "Creating Account..." : "Create Account"}
               </button>
             </form>
           )}
@@ -331,11 +381,8 @@ export const AuthModal: React.FC<{
             >
               {isLogin
                 ? "Don't have an account? Sign Up"
-                : 'Already have an account? Sign In'
-              }
+                : "Already have an account? Sign In"}
             </button>
-
-            {/* Guest mode removed - all users must register */}
           </div>
         </div>
       </motion.div>

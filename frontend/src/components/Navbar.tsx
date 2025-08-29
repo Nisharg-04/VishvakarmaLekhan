@@ -57,7 +57,7 @@ const Navbar: React.FC<{ onAuthRequired: () => void }> = ({
             alt="Logo"
             className="w-12 h-12 object-contain rounded-full"
           />
-          <div>
+          <div className="hidden sm:block">
             <h1 className="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Vishvakarma Lekhan
             </h1>
