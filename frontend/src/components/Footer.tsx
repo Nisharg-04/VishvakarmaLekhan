@@ -16,13 +16,16 @@ import {
   Shield,
   MessageSquare,
   Lightbulb,
+  Home,
+  Users,
 } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { path: "/", label: "Home", icon: null },
+    { path: "/", label: "Home", icon: Home },
+    { path: "/team", label: "Our Team", icon: Users },
     { path: "/features", label: "Features", icon: Sparkles },
     { path: "/support", label: "Support", icon: HelpCircle },
     { path: "/contact", label: "Contact Us", icon: MessageSquare },
@@ -48,7 +51,7 @@ const Footer: React.FC = () => {
     <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-4">
@@ -134,35 +137,6 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Partner Institutions */}
-          <div>
-            <h4 className="font-semibold text-slate-900 dark:text-white mb-4">
-              Partner Institutions
-            </h4>
-            <div className="space-y-4">
-              {institutions.map((institution, index) => (
-                <motion.div
-                  key={institution.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-center space-x-3"
-                >
-                  <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center overflow-hidden">
-                    <img
-                      src={institution.logo}
-                      alt={institution.name}
-                      className="w-6 h-6 object-contain"
-                    />
-                  </div>
-                  <span className="text-slate-600 dark:text-slate-300 text-sm">
-                    {institution.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Newsletter Section */}
@@ -202,6 +176,13 @@ const Footer: React.FC = () => {
               <span>for academic excellence.</span>
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link
+                to="/team"
+                className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors duration-300"
+              >
+                Our Team
+              </Link>
+
               <Link
                 to="/privacy"
                 className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors duration-300"

@@ -8,13 +8,8 @@ import {
   Mail,
   Building,
   Star,
-  ThumbsUp,
   MessageSquare,
   CheckCircle,
-  Zap,
-  Target,
-  Users,
-  TrendingUp,
 } from "lucide-react";
 import { submitFeatureRequest, type FeatureRequestData } from "../utils/api";
 
@@ -48,6 +43,8 @@ const RequestFeature: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    console.log("Form data being submitted:", formData);
 
     try {
       const response = await submitFeatureRequest(
@@ -92,40 +89,9 @@ const RequestFeature: React.FC = () => {
     { value: "performance", label: "Performance" },
   ];
 
-  const popularRequests = [
-    {
-      icon: Zap,
-      title: "Real-time Collaboration",
-      description: "Allow multiple users to edit reports simultaneously",
-      votes: 45,
-      status: "In Progress",
-    },
-    {
-      icon: Target,
-      title: "Custom AI Training",
-      description: "Train AI models on organization-specific writing styles",
-      votes: 38,
-      status: "Under Review",
-    },
-    {
-      icon: Users,
-      title: "Team Management",
-      description: "Advanced user roles and permission management",
-      votes: 32,
-      status: "Planned",
-    },
-    {
-      icon: TrendingUp,
-      title: "Analytics Dashboard",
-      description: "Detailed analytics for report performance and engagement",
-      votes: 28,
-      status: "Under Review",
-    },
-  ];
-
   const benefits = [
     {
-      icon: ThumbsUp,
+      icon: Star,
       title: "Direct Impact",
       description: "Your suggestions directly influence our product roadmap",
     },
@@ -219,11 +185,11 @@ const RequestFeature: React.FC = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto">
             {/* Feature Request Form */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700"
             >
@@ -393,72 +359,6 @@ const RequestFeature: React.FC = () => {
                   {isSubmitting ? "Submitting..." : "Submit Feature Request"}
                 </motion.button>
               </form>
-            </motion.div>
-
-            {/* Popular Requests */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="space-y-6"
-            >
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                Popular Feature Requests
-              </h2>
-
-              {popularRequests.map((request, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-700"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-3">
-                        <request.icon className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-                          {request.title}
-                        </h3>
-                        <div className="flex items-center mt-1">
-                          <ThumbsUp className="w-4 h-4 text-blue-500 mr-1" />
-                          <span className="text-sm text-slate-600 dark:text-slate-300">
-                            {request.votes} votes
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        request.status === "In Progress"
-                          ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                          : request.status === "Under Review"
-                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                          : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                      }`}
-                    >
-                      {request.status}
-                    </span>
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    {request.description}
-                  </p>
-                </div>
-              ))}
-
-              {/* Guidelines */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-2xl p-6 border border-blue-200 dark:border-slate-600">
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                  Feature Request Guidelines
-                </h3>
-                <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                  <li>• Be specific about what you want the feature to do</li>
-                  <li>• Explain why the feature would be valuable</li>
-                  <li>• Provide real-world use cases or examples</li>
-                  <li>• Check if similar requests already exist</li>
-                  <li>• Consider how it fits with existing functionality</li>
-                </ul>
-              </div>
             </motion.div>
           </div>
         </div>

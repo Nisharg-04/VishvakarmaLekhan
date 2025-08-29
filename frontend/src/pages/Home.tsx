@@ -6,14 +6,11 @@ import {
   Download,
   ArrowRight,
   Users,
-  Calendar,
-  Award,
   Bot,
   Sparkles,
   Star,
   Shield,
   BarChart3,
-  Play,
   MessageSquare,
   Rocket,
   PenTool,
@@ -89,37 +86,6 @@ const Home: React.FC = () => {
         "Generate comprehensive reports in seconds, not hours of manual work",
       gradient: "from-yellow-500 to-orange-600",
       delay: 0.6,
-    },
-  ];
-
-  const stats = [
-    {
-      icon: Users,
-      label: "Active Users",
-      value: "5,000+",
-      description: "Students & Faculty",
-      color: "text-blue-600",
-    },
-    {
-      icon: FileText,
-      label: "Reports Generated",
-      value: "25,000+",
-      description: "Professional Documents",
-      color: "text-purple-600",
-    },
-    {
-      icon: Calendar,
-      label: "Events Documented",
-      value: "15,000+",
-      description: "Academic Events",
-      color: "text-emerald-600",
-    },
-    {
-      icon: Award,
-      label: "Success Rate",
-      value: "99.9%",
-      description: "Report Quality",
-      color: "text-orange-600",
     },
   ];
 
@@ -357,37 +323,13 @@ const Home: React.FC = () => {
                     <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  <button className="group bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/50 text-slate-700 dark:text-slate-200 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-slate-700/50 transition-all duration-300 flex items-center justify-center shadow-lg">
-                    <Play className="mr-3 h-5 w-5" />
-                    Watch Demo
-                  </button>
-                </motion.div>
-
-                {/* Quick Stats */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.4, duration: 0.8 }}
-                  className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-6"
-                >
-                  {stats.map((stat, index) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 1.6 + index * 0.1, duration: 0.5 }}
-                      className="text-center group"
-                    >
-                      <div
-                        className={`text-2xl lg:text-3xl font-bold ${stat.color} mb-1 group-hover:scale-110 transition-transform`}
-                      >
-                        {stat.value}
-                      </div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400">
-                        {stat.description}
-                      </div>
-                    </motion.div>
-                  ))}
+                  <Link
+                    to="/team"
+                    className="group bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg border border-slate-200/50 dark:border-slate-600/50 text-slate-700 dark:text-slate-200 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 dark:hover:bg-slate-700/50 transition-all duration-300 flex items-center justify-center shadow-lg"
+                  >
+                    <Users className="mr-3 h-5 w-5" />
+                    Meet Our Team
+                  </Link>
                 </motion.div>
               </motion.div>
 
@@ -821,138 +763,6 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {/* Logo and Description */}
-              <div className="lg:col-span-2">
-                <div className="flex items-center mb-6">
-                  <img
-                    src="/VLlogo.PNG"
-                    alt="Vishvakarma Lekhan"
-                    className="h-12 w-12 object-contain mr-4"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIGZpbGw9IiNGRkZGRkYiLz48cGF0aCBkPSJNMjQgMTJMMzYgMjJMMTIgMjJMMjQgMTJaIiBmaWxsPSIjMzMzIi8+PC9zdmc+";
-                    }}
-                  />
-                  <div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                      Vishvakarma Lekhan
-                    </h3>
-                    <p className="text-yellow-400 font-semibold">
-                      Think Less, Report More
-                    </p>
-                  </div>
-                </div>
-                <p className="text-slate-300 leading-relaxed mb-6 max-w-md">
-                  Transforming academic event documentation with intelligent
-                  AI-powered automation. Create professional reports in minutes,
-                  not hours.
-                </p>
-                <div className="flex items-center space-x-4">
-                  <img
-                    src="/BVM Logo-1.png"
-                    alt="BVM"
-                    className="h-8 w-auto object-contain bg-white rounded p-1"
-                  />
-                  <img
-                    src="/CVM Logo.png"
-                    alt="CVM"
-                    className="h-8 w-auto object-contain bg-white rounded p-1"
-                  />
-                  <img
-                    src="/GTU.png"
-                    alt="GTU"
-                    className="h-8 w-auto object-contain bg-white rounded p-1"
-                  />
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              <div>
-                <h4 className="text-lg font-semibold mb-4 text-blue-400">
-                  Quick Links
-                </h4>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      to="/generate"
-                      className="text-slate-300 hover:text-blue-400 transition-colors"
-                    >
-                      Generate Report
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/history"
-                      className="text-slate-300 hover:text-blue-400 transition-colors"
-                    >
-                      Report History
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/profile"
-                      className="text-slate-300 hover:text-blue-400 transition-colors"
-                    >
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      href="#features"
-                      className="text-slate-300 hover:text-blue-400 transition-colors"
-                    >
-                      Features
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Contact Info */}
-              <div>
-                <h4 className="text-lg font-semibold mb-4 text-purple-400">
-                  Contact
-                </h4>
-                <div className="space-y-2 text-slate-300 text-sm">
-                  <p>Birla Vishvakarma Mahavidyalaya</p>
-                  <p>V.V. Nagar, Anand, Gujarat</p>
-                  <p>Email: info@bvmengineering.ac.in</p>
-                  <p>Phone: +91 2692 231651</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-              <p className="text-slate-400 text-sm">
-                © 2024 Vishvakarma Lekhan. All rights reserved.
-              </p>
-              <div className="flex space-x-6 mt-4 md:mt-0">
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-blue-400 transition-colors text-sm"
-                >
-                  Privacy Policy
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-purple-400 transition-colors text-sm"
-                >
-                  Terms of Service
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-blue-400 transition-colors text-sm"
-                >
-                  Support
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );

@@ -59,6 +59,15 @@ class ApiClient {
           console.error('Authentication failed:', error.message || error.error);
         }
         
+        // If there are validation errors, include them in the error message
+        if (error.errors && Array.isArray(error.errors)) {
+          const validationErrors = error.errors
+            .map((detail: { field?: string; path?: string; message?: string; msg?: string; param?: string }) => 
+              `${detail.field || detail.path || detail.param}: ${detail.message || detail.msg}`)
+            .join(', ');
+          throw new Error(`${error.message || 'Validation failed'}: ${validationErrors}`);
+        }
+        
         // If there are validation details, include them in the error message
         if (error.details && Array.isArray(error.details)) {
           const validationErrors = error.details
@@ -548,6 +557,7 @@ export const submitContactForm = async (formData: ContactFormData): Promise<Cont
 
 // Feature request submission
 export const submitFeatureRequest = async (formData: FeatureRequestData): Promise<ContactResponse> => {
+  console.log('Submitting feature request data:', formData);
   return apiClient.post<ContactResponse>('/feature-request', formData);
 };
 

@@ -14,6 +14,7 @@ import {
   Shield,
   Sparkles,
   HelpCircle,
+  Lightbulb,
 } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 import { useAuthStore } from "../store/authStore";
@@ -32,10 +33,8 @@ const Navbar: React.FC<{ onAuthRequired: () => void }> = ({
 
   const navItems = [
     { path: "/", label: "Home", icon: Home },
-    { path: "/features", label: "Features", icon: Sparkles },
     { path: "/generate", label: "Generate Report", icon: FileText },
     { path: "/history", label: "History", icon: History },
-    { path: "/support", label: "Support", icon: HelpCircle },
   ];
   if (user?.role === "admin")
     navItems.push({ path: "/admin", label: "Admin", icon: Shield });
@@ -138,6 +137,7 @@ const Navbar: React.FC<{ onAuthRequired: () => void }> = ({
                     >
                       <Settings size={16} /> Profile Settings
                     </button>
+
                     {user?.role === "admin" && (
                       <button
                         onClick={() => {
@@ -149,6 +149,15 @@ const Navbar: React.FC<{ onAuthRequired: () => void }> = ({
                         <Shield size={16} /> Admin Panel
                       </button>
                     )}
+                    <button
+                      onClick={() => {
+                        navigate("/request-feature");
+                        setShowUserMenu(false);
+                      }}
+                      className="profile-dropdown-item"
+                    >
+                      <Lightbulb size={16} /> Request a Feature
+                    </button>
                     <hr className="profile-dropdown-divider" />
                     <button
                       onClick={handleLogout}

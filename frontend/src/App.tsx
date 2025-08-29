@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/themeStore";
 import { useAuthStore } from "./store/authStore";
@@ -17,7 +23,27 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Support from "./pages/Support";
 import ContactUs from "./pages/ContactUs";
 import RequestFeature from "./pages/RequestFeature";
+import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
+
+// Protected Route Component
+const ProtectedRoute: React.FC<{
+  children: React.ReactNode;
+  onAuthRequired: () => void;
+}> = ({ children, onAuthRequired }) => {
+  const { user } = useAuthStore();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!user && location.pathname === "/generate") {
+      onAuthRequired();
+      navigate("/", { replace: true });
+    }
+  }, [user, location.pathname, onAuthRequired, navigate]);
+
+  return user ? <>{children}</> : null;
+};
 
 function App() {
   const { isDark } = useThemeStore();
@@ -43,10 +69,15 @@ function App() {
             <Route path="/support" element={<Support />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/request-feature" element={<RequestFeature />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route
               path="/generate"
-              element={user ? <GenerateReport /> : <Home />}
+              element={
+                <ProtectedRoute onAuthRequired={() => setShowAuthModal(true)}>
+                  <GenerateReport />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/history"

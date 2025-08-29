@@ -5,7 +5,7 @@ dotenv.config();
 
 // Create transporter
 const createTransporter = () => {
-    return nodemailer.createTransporter({
+    return nodemailer.createTransport({
         service: 'gmail', // You can change this to other services like 'outlook', 'yahoo', etc.
         auth: {
             user: process.env.EMAIL_USER,
@@ -16,8 +16,8 @@ const createTransporter = () => {
 
 // Admin email addresses
 const ADMIN_EMAILS = [
-    process.env.ADMIN_EMAIL_1 || 'admin1@bvm-reports.edu',
-    process.env.ADMIN_EMAIL_2 || 'admin2@bvm-reports.edu',
+    process.env.ADMIN_EMAIL_1 || 'ncsoni04@gmail.com',
+    process.env.ADMIN_EMAIL_2 || 'ncsoni9898@gmail.com',
     process.env.ADMIN_EMAIL_3 || 'support@bvm-reports.edu',
 ];
 
