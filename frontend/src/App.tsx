@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/themeStore";
 import { useAuthStore } from "./store/authStore";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { AuthModal } from "./components/AuthModal";
 import { AdminDashboard } from "./components/AdminDashboard";
 import LekhakAI from "./components/LekhakAI";
@@ -60,6 +61,7 @@ function App() {
             )}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
 
           <AuthModal
             isOpen={showAuthModal}

@@ -23,118 +23,130 @@ const Features: React.FC = () => {
     {
       icon: Bot,
       title: "AI-Powered Report Generation",
-      description: "Advanced LekhakAI generates professional reports from your event data automatically with intelligent content creation.",
+      description:
+        "Advanced LekhakAI generates professional reports from your event data automatically with intelligent content creation.",
       gradient: "from-blue-500 to-purple-600",
       features: [
         "Natural language processing",
         "Intelligent content structuring",
         "Context-aware writing",
-        "Professional formatting"
-      ]
+        "Professional formatting",
+      ],
     },
     {
       icon: FileText,
       title: "Professional Templates",
-      description: "Choose from a variety of professionally designed templates tailored for academic and corporate events.",
+      description:
+        "Choose from a variety of professionally designed templates tailored for academic and corporate events.",
       gradient: "from-green-500 to-teal-600",
       features: [
         "Academic report templates",
         "Corporate event formats",
         "Custom branding options",
-        "Logo integration"
-      ]
+        "Logo integration",
+      ],
     },
     {
       icon: Download,
       title: "Multiple Export Formats",
-      description: "Export your reports in various formats including DOCX, PDF, and HTML for maximum compatibility.",
+      description:
+        "Export your reports in various formats including DOCX, PDF, and HTML for maximum compatibility.",
       gradient: "from-orange-500 to-red-600",
       features: [
         "Microsoft Word (.docx)",
         "PDF documents",
         "HTML web format",
-        "Print-ready layouts"
-      ]
+        "Print-ready layouts",
+      ],
     },
     {
       icon: Users,
       title: "Collaboration Tools",
-      description: "Work together with your team to create comprehensive reports with real-time collaboration features.",
+      description:
+        "Work together with your team to create comprehensive reports with real-time collaboration features.",
       gradient: "from-purple-500 to-pink-600",
       features: [
         "Real-time editing",
         "Team permissions",
         "Comment system",
-        "Version control"
-      ]
+        "Version control",
+      ],
     },
     {
       icon: Calendar,
       title: "Event Management",
-      description: "Organize and track all your events with integrated calendar and scheduling features.",
+      description:
+        "Organize and track all your events with integrated calendar and scheduling features.",
       gradient: "from-cyan-500 to-blue-600",
       features: [
         "Event scheduling",
         "Reminder notifications",
         "Calendar integration",
-        "Timeline tracking"
-      ]
+        "Timeline tracking",
+      ],
     },
     {
       icon: Award,
       title: "Quality Assurance",
-      description: "Ensure high-quality reports with built-in grammar checking and content validation.",
+      description:
+        "Ensure high-quality reports with built-in grammar checking and content validation.",
       gradient: "from-yellow-500 to-orange-600",
       features: [
         "Grammar checking",
         "Content validation",
         "Plagiarism detection",
-        "Quality scoring"
-      ]
-    }
+        "Quality scoring",
+      ],
+    },
   ];
 
   const additionalFeatures = [
     {
       icon: Shield,
       title: "Security & Privacy",
-      description: "Enterprise-grade security with end-to-end encryption and data protection."
+      description:
+        "Enterprise-grade security with end-to-end encryption and data protection.",
     },
     {
       icon: BarChart3,
       title: "Analytics Dashboard",
-      description: "Track report performance and engagement with detailed analytics."
+      description:
+        "Track report performance and engagement with detailed analytics.",
     },
     {
       icon: Clock,
       title: "Version History",
-      description: "Access complete version history with rollback capabilities."
+      description:
+        "Access complete version history with rollback capabilities.",
     },
     {
       icon: Globe,
       title: "Multi-language Support",
-      description: "Generate reports in multiple languages with AI translation."
+      description:
+        "Generate reports in multiple languages with AI translation.",
     },
     {
       icon: Settings,
       title: "Customization",
-      description: "Fully customizable interface and report generation settings."
+      description:
+        "Fully customizable interface and report generation settings.",
     },
     {
       icon: Archive,
       title: "Cloud Storage",
-      description: "Secure cloud storage with automatic backup and sync."
+      description: "Secure cloud storage with automatic backup and sync.",
     },
     {
       icon: Search,
       title: "Smart Search",
-      description: "Advanced search functionality across all your reports and data."
+      description:
+        "Advanced search functionality across all your reports and data.",
     },
     {
       icon: Palette,
       title: "Theme Options",
-      description: "Dark and light themes with customizable color schemes."
-    }
+      description: "Dark and light themes with customizable color schemes.",
+    },
   ];
 
   return (
@@ -155,7 +167,8 @@ const Features: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Discover the comprehensive suite of tools designed to make event report generation effortless, professional, and intelligent.
+              Discover the comprehensive suite of tools designed to make event
+              report generation effortless, professional, and intelligent.
             </p>
           </motion.div>
 
@@ -169,7 +182,9 @@ const Features: React.FC = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6`}>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6`}
+                >
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
@@ -180,7 +195,10 @@ const Features: React.FC = () => {
                 </p>
                 <ul className="space-y-2">
                   {feature.features.map((item, idx) => (
-                    <li key={idx} className="flex items-center text-slate-600 dark:text-slate-300">
+                    <li
+                      key={idx}
+                      className="flex items-center text-slate-600 dark:text-slate-300"
+                    >
                       <Sparkles className="w-4 h-4 text-blue-500 mr-2" />
                       {item}
                     </li>
@@ -235,7 +253,8 @@ const Features: React.FC = () => {
                 Ready to Experience These Features?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Start generating professional reports with AI-powered intelligence today.
+                Start generating professional reports with AI-powered
+                intelligence today.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}

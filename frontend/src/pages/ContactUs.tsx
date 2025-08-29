@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import {
   Mail,
   Phone,
@@ -12,6 +13,7 @@ import {
   AlertCircle,
   CheckCircle,
 } from "lucide-react";
+import { submitContactForm, type ContactFormData } from "../utils/api";
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -25,28 +27,26 @@ const ContactUs: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
+    try {
+      const response = await submitContactForm(formData as ContactFormData);
+
+      if (response.success) {
         setIsSubmitted(true);
         setFormData({
           name: "",
@@ -56,9 +56,15 @@ const ContactUs: React.FC = () => {
           message: "",
           priority: "medium",
         });
+        toast.success(response.message);
+      } else {
+        toast.error(response.message || "Failed to send message");
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
+      toast.error(
+        "Sorry, there was an error sending your message. Please try again later."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -70,29 +76,29 @@ const ContactUs: React.FC = () => {
       title: "Email Us",
       details: "support@bvm-reports.edu",
       description: "Send us an email for general inquiries",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: Phone,
       title: "Call Us",
       details: "+91 1234 567890",
       description: "Available Mon-Fri, 9AM-6PM IST",
-      gradient: "from-green-500 to-teal-500"
+      gradient: "from-green-500 to-teal-500",
     },
     {
       icon: MapPin,
       title: "Visit Us",
       details: "BVM Engineering College",
       description: "V.V. Nagar, Anand, Gujarat, India",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: Clock,
       title: "Office Hours",
       details: "Mon - Fri: 9AM - 6PM",
       description: "Weekend support via email",
-      gradient: "from-orange-500 to-red-500"
-    }
+      gradient: "from-orange-500 to-red-500",
+    },
   ];
 
   const offices = [
@@ -100,20 +106,20 @@ const ContactUs: React.FC = () => {
       name: "Main Campus",
       address: "BVM Engineering College, V.V. Nagar, Anand, Gujarat 388120",
       phone: "+91 1234 567890",
-      email: "main@bvm-reports.edu"
+      email: "main@bvm-reports.edu",
     },
     {
       name: "Research Center",
       address: "CVM University, V.V. Nagar, Anand, Gujarat 388120",
       phone: "+91 1234 567891",
-      email: "research@bvm-reports.edu"
+      email: "research@bvm-reports.edu",
     },
     {
       name: "Innovation Hub",
       address: "Vishvakarma Lekhan Institute, Anand, Gujarat",
       phone: "+91 1234 567892",
-      email: "innovation@bvm-reports.edu"
-    }
+      email: "innovation@bvm-reports.edu",
+    },
   ];
 
   if (isSubmitted) {
@@ -165,7 +171,8 @@ const ContactUs: React.FC = () => {
               Get in Touch
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Have questions about our report generation platform? We're here to help you succeed.
+              Have questions about our report generation platform? We're here to
+              help you succeed.
             </p>
           </motion.div>
 
@@ -179,7 +186,9 @@ const ContactUs: React.FC = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-700 text-center"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${info.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${info.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4`}
+                >
                   <info.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
@@ -206,7 +215,7 @@ const ContactUs: React.FC = () => {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Send us a Message
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -333,7 +342,7 @@ const ContactUs: React.FC = () => {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Our Locations
               </h2>
-              
+
               {offices.map((office, index) => (
                 <div
                   key={index}

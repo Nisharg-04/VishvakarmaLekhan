@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import {
   Lightbulb,
   Send,
@@ -15,6 +16,7 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
+import { submitFeatureRequest, type FeatureRequestData } from "../utils/api";
 
 const RequestFeature: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,28 +33,28 @@ const RequestFeature: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      const response = await fetch('/api/feature-request', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
+    try {
+      const response = await submitFeatureRequest(
+        formData as FeatureRequestData
+      );
+
+      if (response.success) {
         setIsSubmitted(true);
         setFormData({
           name: "",
@@ -65,9 +67,15 @@ const RequestFeature: React.FC = () => {
           category: "general",
           expectedBenefit: "",
         });
+        toast.success(response.message);
+      } else {
+        toast.error(response.message || "Failed to submit feature request");
       }
     } catch (error) {
-      console.error('Error submitting feature request:', error);
+      console.error("Error submitting feature request:", error);
+      toast.error(
+        "Sorry, there was an error submitting your feature request. Please try again later."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -90,47 +98,47 @@ const RequestFeature: React.FC = () => {
       title: "Real-time Collaboration",
       description: "Allow multiple users to edit reports simultaneously",
       votes: 45,
-      status: "In Progress"
+      status: "In Progress",
     },
     {
       icon: Target,
       title: "Custom AI Training",
       description: "Train AI models on organization-specific writing styles",
       votes: 38,
-      status: "Under Review"
+      status: "Under Review",
     },
     {
       icon: Users,
       title: "Team Management",
       description: "Advanced user roles and permission management",
       votes: 32,
-      status: "Planned"
+      status: "Planned",
     },
     {
       icon: TrendingUp,
       title: "Analytics Dashboard",
       description: "Detailed analytics for report performance and engagement",
       votes: 28,
-      status: "Under Review"
-    }
+      status: "Under Review",
+    },
   ];
 
   const benefits = [
     {
       icon: ThumbsUp,
       title: "Direct Impact",
-      description: "Your suggestions directly influence our product roadmap"
+      description: "Your suggestions directly influence our product roadmap",
     },
     {
       icon: Star,
       title: "Priority Access",
-      description: "Get early access to features you've requested"
+      description: "Get early access to features you've requested",
     },
     {
       icon: MessageSquare,
       title: "Stay Updated",
-      description: "Receive updates on the progress of your feature requests"
-    }
+      description: "Receive updates on the progress of your feature requests",
+    },
   ];
 
   if (isSubmitted) {
@@ -149,7 +157,8 @@ const RequestFeature: React.FC = () => {
             Feature Request Submitted!
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-8">
-            Thank you for your suggestion! We'll review it and keep you updated on its progress.
+            Thank you for your suggestion! We'll review it and keep you updated
+            on its progress.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -182,7 +191,8 @@ const RequestFeature: React.FC = () => {
               Request a Feature
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Have an idea to make our platform better? We'd love to hear it! Your feedback drives our innovation.
+              Have an idea to make our platform better? We'd love to hear it!
+              Your feedback drives our innovation.
             </p>
           </motion.div>
 
@@ -220,7 +230,7 @@ const RequestFeature: React.FC = () => {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Submit Your Feature Idea
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -298,7 +308,7 @@ const RequestFeature: React.FC = () => {
                       title="Select feature category"
                       className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      {categories.map(category => (
+                      {categories.map((category) => (
                         <option key={category.value} value={category.value}>
                           {category.label}
                         </option>
@@ -395,7 +405,7 @@ const RequestFeature: React.FC = () => {
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
                 Popular Feature Requests
               </h2>
-              
+
               {popularRequests.map((request, index) => (
                 <div
                   key={index}
@@ -418,13 +428,15 @@ const RequestFeature: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      request.status === 'In Progress' 
-                        ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                        : request.status === 'Under Review'
-                        ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                        : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                    }`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        request.status === "In Progress"
+                          ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          : request.status === "Under Review"
+                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                          : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                      }`}
+                    >
                       {request.status}
                     </span>
                   </div>

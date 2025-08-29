@@ -508,3 +508,71 @@ export const getAdminReport = async (reportId: string): Promise<EventReport> => 
   return apiClient.get<{ report: EventReport }>(`/reports/admin/${reportId}`)
     .then(response => response.report);
 };
+
+// Contact form types
+export interface ContactFormData {
+  name: string;
+  email: string;
+  organization?: string;
+  subject: string;
+  message: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+}
+
+export interface FeatureRequestData {
+  name: string;
+  email: string;
+  organization?: string;
+  featureTitle: string;
+  description: string;
+  useCase: string;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  category: 'general' | 'ai' | 'ui' | 'export' | 'collaboration' | 'integration' | 'security' | 'performance';
+  expectedBenefit?: string;
+}
+
+export interface ContactResponse {
+  success: boolean;
+  message: string;
+  data?: {
+    adminEmailId: string;
+    userEmailId: string;
+  };
+  errors?: Array<{ msg: string; param: string }>;
+}
+
+// Contact form submission
+export const submitContactForm = async (formData: ContactFormData): Promise<ContactResponse> => {
+  return apiClient.post<ContactResponse>('/contact', formData);
+};
+
+// Feature request submission
+export const submitFeatureRequest = async (formData: FeatureRequestData): Promise<ContactResponse> => {
+  return apiClient.post<ContactResponse>('/feature-request', formData);
+};
+
+// Get contact information
+export const getContactInfo = async (): Promise<{
+  success: boolean;
+  data: {
+    email: string;
+    phone: string;
+    address: string;
+    businessHours: string;
+    supportChannels: Array<{
+      type: string;
+      label: string;
+      value: string;
+      responseTime: string;
+      availability?: string;
+    }>;
+    offices: Array<{
+      name: string;
+      address: string;
+      phone: string;
+      email: string;
+    }>;
+  };
+}> => {
+  return apiClient.get('/info');
+};

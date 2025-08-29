@@ -32,7 +32,7 @@ const Support: React.FC = () => {
       description: "Get instant help from our support team",
       action: "Start Chat",
       gradient: "from-blue-500 to-cyan-500",
-      available: "24/7"
+      available: "24/7",
     },
     {
       icon: Mail,
@@ -40,7 +40,7 @@ const Support: React.FC = () => {
       description: "Send us a detailed message about your issue",
       action: "Send Email",
       gradient: "from-green-500 to-teal-500",
-      available: "Response within 24h"
+      available: "Response within 24h",
     },
     {
       icon: Phone,
@@ -48,7 +48,7 @@ const Support: React.FC = () => {
       description: "Speak directly with our technical team",
       action: "Call Now",
       gradient: "from-purple-500 to-pink-500",
-      available: "Mon-Fri 9AM-6PM"
+      available: "Mon-Fri 9AM-6PM",
     },
     {
       icon: Bot,
@@ -56,8 +56,8 @@ const Support: React.FC = () => {
       description: "Get quick answers from our LekhakAI helper",
       action: "Ask AI",
       gradient: "from-orange-500 to-red-500",
-      available: "Always Available"
-    }
+      available: "Always Available",
+    },
   ];
 
   const resources = [
@@ -65,65 +65,73 @@ const Support: React.FC = () => {
       icon: Book,
       title: "Documentation",
       description: "Comprehensive guides and API references",
-      link: "#"
+      link: "#",
     },
     {
       icon: Video,
       title: "Video Tutorials",
       description: "Step-by-step video guides for all features",
-      link: "#"
+      link: "#",
     },
     {
       icon: FileText,
       title: "Knowledge Base",
       description: "Articles and solutions for common issues",
-      link: "#"
+      link: "#",
     },
     {
       icon: Users,
       title: "Community Forum",
       description: "Connect with other users and share tips",
-      link: "#"
-    }
+      link: "#",
+    },
   ];
 
   const faqs = [
     {
       question: "How do I generate my first report?",
-      answer: "To generate your first report, log in to your account, click 'Generate Report', fill in the event details, and let our AI create a professional report for you. You can customize the template and add additional information as needed."
+      answer:
+        "To generate your first report, log in to your account, click 'Generate Report', fill in the event details, and let our AI create a professional report for you. You can customize the template and add additional information as needed.",
     },
     {
       question: "What file formats can I export my reports to?",
-      answer: "You can export your reports in multiple formats including DOCX (Microsoft Word), PDF, and HTML. Each format maintains professional formatting and can be customized according to your needs."
+      answer:
+        "You can export your reports in multiple formats including DOCX (Microsoft Word), PDF, and HTML. Each format maintains professional formatting and can be customized according to your needs.",
     },
     {
       question: "Is my data secure and private?",
-      answer: "Yes, we take data security very seriously. All data is encrypted in transit and at rest, we use industry-standard security practices, and we never share your report content with third parties. You can read more in our Privacy Policy."
+      answer:
+        "Yes, we take data security very seriously. All data is encrypted in transit and at rest, we use industry-standard security practices, and we never share your report content with third parties. You can read more in our Privacy Policy.",
     },
     {
       question: "Can I collaborate with my team on reports?",
-      answer: "Absolutely! Our platform supports real-time collaboration. You can invite team members to edit reports, leave comments, and track changes. Different permission levels ensure proper access control."
+      answer:
+        "Absolutely! Our platform supports real-time collaboration. You can invite team members to edit reports, leave comments, and track changes. Different permission levels ensure proper access control.",
     },
     {
       question: "How does the AI-powered generation work?",
-      answer: "Our LekhakAI uses advanced natural language processing to analyze your event data and generate professional content. It understands context, maintains consistency, and follows academic and corporate writing standards."
+      answer:
+        "Our LekhakAI uses advanced natural language processing to analyze your event data and generate professional content. It understands context, maintains consistency, and follows academic and corporate writing standards.",
     },
     {
       question: "What if I need to customize report templates?",
-      answer: "You can fully customize report templates including logos, color schemes, fonts, and layout. We also provide pre-designed templates for different types of events and organizations."
+      answer:
+        "You can fully customize report templates including logos, color schemes, fonts, and layout. We also provide pre-designed templates for different types of events and organizations.",
     },
     {
       question: "How do I integrate institutional logos?",
-      answer: "You can upload your institutional logos in the profile settings. The system supports multiple logos and automatically places them in appropriate positions within your reports."
+      answer:
+        "You can upload your institutional logos in the profile settings. The system supports multiple logos and automatically places them in appropriate positions within your reports.",
     },
     {
       question: "What are the system requirements?",
-      answer: "Our platform is web-based and works on any modern browser (Chrome, Firefox, Safari, Edge). For mobile access, we recommend using the latest version of your mobile browser. No additional software installation is required."
-    }
+      answer:
+        "Our platform is web-based and works on any modern browser (Chrome, Firefox, Safari, Edge). For mobile access, we recommend using the latest version of your mobile browser. No additional software installation is required.",
+    },
   ];
 
   const filteredFaqs = faqs.filter(
-    faq =>
+    (faq) =>
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
       faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -146,7 +154,8 @@ const Support: React.FC = () => {
               How can we help you?
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Find answers, get support, and learn how to make the most of our report generation platform.
+              Find answers, get support, and learn how to make the most of our
+              report generation platform.
             </p>
           </motion.div>
 
@@ -160,7 +169,9 @@ const Support: React.FC = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 text-center"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${option.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${option.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4`}
+                >
                   <option.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
@@ -229,7 +240,7 @@ const Support: React.FC = () => {
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
               Frequently Asked Questions
             </h2>
-            
+
             {/* Search */}
             <div className="relative mb-8">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -285,7 +296,8 @@ const Support: React.FC = () => {
             {filteredFaqs.length === 0 && (
               <div className="text-center py-8">
                 <p className="text-slate-600 dark:text-slate-300">
-                  No FAQs found matching your search. Try different keywords or contact support.
+                  No FAQs found matching your search. Try different keywords or
+                  contact support.
                 </p>
               </div>
             )}
@@ -300,7 +312,8 @@ const Support: React.FC = () => {
           >
             <h2 className="text-2xl font-bold mb-4">Still need help?</h2>
             <p className="text-lg mb-6 opacity-90">
-              Our support team is ready to assist you with any questions or issues.
+              Our support team is ready to assist you with any questions or
+              issues.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button

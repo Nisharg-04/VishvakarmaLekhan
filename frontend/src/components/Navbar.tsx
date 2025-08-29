@@ -12,6 +12,8 @@ import {
   LogOut,
   Settings,
   Shield,
+  Sparkles,
+  HelpCircle,
 } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 import { useAuthStore } from "../store/authStore";

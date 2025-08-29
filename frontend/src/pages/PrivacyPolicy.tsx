@@ -10,17 +10,17 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Personal Information",
-          text: "We collect information you provide directly to us, such as when you create an account, generate reports, or contact us for support. This may include your name, email address, institutional affiliation, and report content."
+          text: "We collect information you provide directly to us, such as when you create an account, generate reports, or contact us for support. This may include your name, email address, institutional affiliation, and report content.",
         },
         {
           subtitle: "Usage Information",
-          text: "We automatically collect certain information about your use of our services, including your IP address, browser type, operating system, access times, and pages viewed."
+          text: "We automatically collect certain information about your use of our services, including your IP address, browser type, operating system, access times, and pages viewed.",
         },
         {
           subtitle: "Report Data",
-          text: "We collect and process the content of reports you create, including event details, participant information, and any uploaded files or images used in report generation."
-        }
-      ]
+          text: "We collect and process the content of reports you create, including event details, participant information, and any uploaded files or images used in report generation.",
+        },
+      ],
     },
     {
       title: "How We Use Your Information",
@@ -28,17 +28,17 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Service Provision",
-          text: "We use your information to provide, maintain, and improve our report generation services, including AI-powered content creation and template customization."
+          text: "We use your information to provide, maintain, and improve our report generation services, including AI-powered content creation and template customization.",
         },
         {
           subtitle: "Communication",
-          text: "We may use your contact information to send you service-related announcements, updates about new features, and respond to your inquiries."
+          text: "We may use your contact information to send you service-related announcements, updates about new features, and respond to your inquiries.",
         },
         {
           subtitle: "Analytics and Improvement",
-          text: "We analyze usage patterns to understand how our services are used and to make improvements to functionality and user experience."
-        }
-      ]
+          text: "We analyze usage patterns to understand how our services are used and to make improvements to functionality and user experience.",
+        },
+      ],
     },
     {
       title: "Information Sharing and Disclosure",
@@ -46,17 +46,17 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Service Providers",
-          text: "We may share your information with third-party service providers who help us operate our services, such as cloud hosting providers and analytics services."
+          text: "We may share your information with third-party service providers who help us operate our services, such as cloud hosting providers and analytics services.",
         },
         {
           subtitle: "Legal Requirements",
-          text: "We may disclose your information if required to do so by law or in response to valid requests by public authorities."
+          text: "We may disclose your information if required to do so by law or in response to valid requests by public authorities.",
         },
         {
           subtitle: "Business Transfers",
-          text: "In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction."
-        }
-      ]
+          text: "In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.",
+        },
+      ],
     },
     {
       title: "Data Security",
@@ -64,17 +64,17 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Encryption",
-          text: "We use industry-standard encryption to protect your data both in transit and at rest. All communications with our servers are secured using SSL/TLS encryption."
+          text: "We use industry-standard encryption to protect your data both in transit and at rest. All communications with our servers are secured using SSL/TLS encryption.",
         },
         {
           subtitle: "Access Controls",
-          text: "We implement strict access controls to ensure that only authorized personnel can access your personal information, and only when necessary for service provision."
+          text: "We implement strict access controls to ensure that only authorized personnel can access your personal information, and only when necessary for service provision.",
         },
         {
           subtitle: "Regular Audits",
-          text: "We conduct regular security audits and assessments to identify and address potential vulnerabilities in our systems."
-        }
-      ]
+          text: "We conduct regular security audits and assessments to identify and address potential vulnerabilities in our systems.",
+        },
+      ],
     },
     {
       title: "Your Rights and Choices",
@@ -82,17 +82,17 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Account Information",
-          text: "You can update your account information at any time through your profile settings. You have the right to request access to, correction of, or deletion of your personal information."
+          text: "You can update your account information at any time through your profile settings. You have the right to request access to, correction of, or deletion of your personal information.",
         },
         {
           subtitle: "Data Portability",
-          text: "You can export your report data at any time in standard formats. We provide tools to help you download your reports and associated data."
+          text: "You can export your report data at any time in standard formats. We provide tools to help you download your reports and associated data.",
         },
         {
           subtitle: "Communication Preferences",
-          text: "You can opt out of non-essential communications by updating your preferences in your account settings or following the unsubscribe instructions in our emails."
-        }
-      ]
+          text: "You can opt out of non-essential communications by updating your preferences in your account settings or following the unsubscribe instructions in our emails.",
+        },
+      ],
     },
     {
       title: "Contact Information",
@@ -100,18 +100,18 @@ const PrivacyPolicy: React.FC = () => {
       content: [
         {
           subtitle: "Privacy Officer",
-          text: "If you have questions about this Privacy Policy or our data practices, please contact our Privacy Officer at privacy@bvm-reports.edu."
+          text: "If you have questions about this Privacy Policy or our data practices, please contact our Privacy Officer at privacy@bvm-reports.edu.",
         },
         {
           subtitle: "Data Protection Authority",
-          text: "You have the right to lodge a complaint with your local data protection authority if you believe we have not complied with applicable data protection laws."
+          text: "You have the right to lodge a complaint with your local data protection authority if you believe we have not complied with applicable data protection laws.",
         },
         {
           subtitle: "Updates to This Policy",
-          text: "We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website and sending you an email notification."
-        }
-      ]
-    }
+          text: "We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website and sending you an email notification.",
+        },
+      ],
+    },
   ];
 
   return (
@@ -132,7 +132,8 @@ const PrivacyPolicy: React.FC = () => {
               Privacy Policy
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Your privacy is important to us. This policy explains how we collect, use, and protect your information.
+              Your privacy is important to us. This policy explains how we
+              collect, use, and protect your information.
             </p>
             <div className="mt-8 text-sm text-slate-500 dark:text-slate-400">
               Last updated: August 29, 2025
@@ -157,7 +158,7 @@ const PrivacyPolicy: React.FC = () => {
                     {section.title}
                   </h2>
                 </div>
-                
+
                 <div className="space-y-6">
                   {section.content.map((item, idx) => (
                     <div key={idx}>
@@ -181,9 +182,12 @@ const PrivacyPolicy: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center"
           >
-            <h2 className="text-2xl font-bold mb-4">Questions About Your Privacy?</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Questions About Your Privacy?
+            </h2>
             <p className="text-lg mb-6 opacity-90">
-              We're here to help. Contact us if you have any questions about how we handle your data.
+              We're here to help. Contact us if you have any questions about how
+              we handle your data.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

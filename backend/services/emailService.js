@@ -5,38 +5,38 @@ dotenv.config();
 
 // Create transporter
 const createTransporter = () => {
-  return nodemailer.createTransporter({
-    service: 'gmail', // You can change this to other services like 'outlook', 'yahoo', etc.
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS, // Use app password for Gmail
-    },
-  });
+    return nodemailer.createTransporter({
+        service: 'gmail', // You can change this to other services like 'outlook', 'yahoo', etc.
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS, // Use app password for Gmail
+        },
+    });
 };
 
 // Admin email addresses
 const ADMIN_EMAILS = [
-  process.env.ADMIN_EMAIL_1 || 'admin1@bvm-reports.edu',
-  process.env.ADMIN_EMAIL_2 || 'admin2@bvm-reports.edu',
-  process.env.ADMIN_EMAIL_3 || 'support@bvm-reports.edu',
+    process.env.ADMIN_EMAIL_1 || 'admin1@bvm-reports.edu',
+    process.env.ADMIN_EMAIL_2 || 'admin2@bvm-reports.edu',
+    process.env.ADMIN_EMAIL_3 || 'support@bvm-reports.edu',
 ];
 
 // Send contact us email
 export const sendContactEmail = async (contactData) => {
-  const { name, email, organization, subject, message, priority } = contactData;
-  
-  const transporter = createTransporter();
-  
-  const priorityColors = {
-    low: '#10B981',
-    medium: '#F59E0B',
-    high: '#F97316',
-    urgent: '#EF4444'
-  };
-  
-  const priorityColor = priorityColors[priority] || '#6B7280';
-  
-  const htmlContent = `
+    const { name, email, organization, subject, message, priority } = contactData;
+
+    const transporter = createTransporter();
+
+    const priorityColors = {
+        low: '#10B981',
+        medium: '#F59E0B',
+        high: '#F97316',
+        urgent: '#EF4444'
+    };
+
+    const priorityColor = priorityColors[priority] || '#6B7280';
+
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -99,62 +99,62 @@ export const sendContactEmail = async (contactData) => {
     </html>
   `;
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: ADMIN_EMAILS,
-    subject: `[${priority.toUpperCase()}] Contact Form: ${subject}`,
-    html: htmlContent,
-    replyTo: email,
-  };
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: ADMIN_EMAILS,
+        subject: `[${priority.toUpperCase()}] Contact Form: ${subject}`,
+        html: htmlContent,
+        replyTo: email,
+    };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Contact email sent:', info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    console.error('Error sending contact email:', error);
-    throw error;
-  }
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Contact email sent:', info.messageId);
+        return { success: true, messageId: info.messageId };
+    } catch (error) {
+        console.error('Error sending contact email:', error);
+        throw error;
+    }
 };
 
 // Send feature request email
 export const sendFeatureRequestEmail = async (featureData) => {
-  const { 
-    name, 
-    email, 
-    organization, 
-    featureTitle, 
-    description, 
-    useCase, 
-    priority, 
-    category, 
-    expectedBenefit 
-  } = featureData;
-  
-  const transporter = createTransporter();
-  
-  const priorityColors = {
-    low: '#10B981',
-    medium: '#F59E0B',
-    high: '#F97316',
-    critical: '#EF4444'
-  };
-  
-  const categoryColors = {
-    general: '#6B7280',
-    ai: '#8B5CF6',
-    ui: '#3B82F6',
-    export: '#10B981',
-    collaboration: '#F59E0B',
-    integration: '#F97316',
-    security: '#EF4444',
-    performance: '#06B6D4'
-  };
-  
-  const priorityColor = priorityColors[priority] || '#6B7280';
-  const categoryColor = categoryColors[category] || '#6B7280';
-  
-  const htmlContent = `
+    const {
+        name,
+        email,
+        organization,
+        featureTitle,
+        description,
+        useCase,
+        priority,
+        category,
+        expectedBenefit
+    } = featureData;
+
+    const transporter = createTransporter();
+
+    const priorityColors = {
+        low: '#10B981',
+        medium: '#F59E0B',
+        high: '#F97316',
+        critical: '#EF4444'
+    };
+
+    const categoryColors = {
+        general: '#6B7280',
+        ai: '#8B5CF6',
+        ui: '#3B82F6',
+        export: '#10B981',
+        collaboration: '#F59E0B',
+        integration: '#F97316',
+        security: '#EF4444',
+        performance: '#06B6D4'
+    };
+
+    const priorityColor = priorityColors[priority] || '#6B7280';
+    const categoryColor = categoryColors[category] || '#6B7280';
+
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -233,31 +233,31 @@ export const sendFeatureRequestEmail = async (featureData) => {
     </html>
   `;
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: ADMIN_EMAILS,
-    subject: `[FEATURE REQUEST] [${priority.toUpperCase()}] ${featureTitle}`,
-    html: htmlContent,
-    replyTo: email,
-  };
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: ADMIN_EMAILS,
+        subject: `[FEATURE REQUEST] [${priority.toUpperCase()}] ${featureTitle}`,
+        html: htmlContent,
+        replyTo: email,
+    };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Feature request email sent:', info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    console.error('Error sending feature request email:', error);
-    throw error;
-  }
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Feature request email sent:', info.messageId);
+        return { success: true, messageId: info.messageId };
+    } catch (error) {
+        console.error('Error sending feature request email:', error);
+        throw error;
+    }
 };
 
 // Send confirmation email to user
 export const sendConfirmationEmail = async (userEmail, userName, type = 'contact') => {
-  const transporter = createTransporter();
-  
-  const isFeatureRequest = type === 'feature';
-  
-  const htmlContent = `
+    const transporter = createTransporter();
+
+    const isFeatureRequest = type === 'feature';
+
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -316,27 +316,27 @@ export const sendConfirmationEmail = async (userEmail, userName, type = 'contact
     </html>
   `;
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: userEmail,
-    subject: isFeatureRequest 
-      ? '💡 Feature Request Received - Thank You!' 
-      : '✅ Message Received - Thank You!',
-    html: htmlContent,
-  };
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: userEmail,
+        subject: isFeatureRequest
+            ? '💡 Feature Request Received - Thank You!'
+            : '✅ Message Received - Thank You!',
+        html: htmlContent,
+    };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Confirmation email sent:', info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    console.error('Error sending confirmation email:', error);
-    throw error;
-  }
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Confirmation email sent:', info.messageId);
+        return { success: true, messageId: info.messageId };
+    } catch (error) {
+        console.error('Error sending confirmation email:', error);
+        throw error;
+    }
 };
 
 export default {
-  sendContactEmail,
-  sendFeatureRequestEmail,
-  sendConfirmationEmail
+    sendContactEmail,
+    sendFeatureRequestEmail,
+    sendConfirmationEmail
 };
