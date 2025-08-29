@@ -1,6 +1,23 @@
 import { EventReport } from '../store/reportStore';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+// More robust approach to get the API base URL from environment variables
+const getApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  console.log('Environment Variable VITE_API_BASE_URL:', envUrl);
+  
+  // If the environment variable is defined and not empty, use it
+  if (envUrl && typeof envUrl === 'string' && envUrl.trim() !== '') {
+    return envUrl.trim();
+  }
+  
+  // Fallback to localhost
+  console.log('Using fallback API URL');
+  return 'http://localhost:5000/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+console.log('Final API Base URL:', API_BASE_URL);
+
 
 // Get auth token from localStorage
 const getAuthToken = (): string | null => {
