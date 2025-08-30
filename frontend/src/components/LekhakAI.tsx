@@ -39,7 +39,7 @@ const LekhakAI: React.FC<LekhakAIProps> = ({ reportContext }) => {
   const [showHistory, setShowHistory] = useState(false);
 
   // Resizable state
-  const [dimensions, setDimensions] = useState({ width: 340, height: 600 }); // w-96 = 384px, h-[600px] = 600px
+  const [dimensions, setDimensions] = useState({ width: 330, height: 600 }); // w-96 = 384px, h-[600px] = 600px
   const [isResizing, setIsResizing] = useState(false);
   const [resizeStart, setResizeStart] = useState({
     x: 0,
