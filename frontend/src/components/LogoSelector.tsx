@@ -80,7 +80,7 @@ const LogoSelector: React.FC<LogoSelectorProps> = ({
       id: "gfg",
       name: "GFG Logo",
       description: "GeeksforGeeks Student Chapter",
-      preview: "GFG Logo.jpg",
+      preview: "/GFG Logo.jpg",
       required: false,
     },
     {

@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   const typingTexts = [
     "Professional Event Reports",
     "AI-Powered Documentation",
-    "Academic Excellence",
+    
     "Smart Report Generation",
     "Intelligent Writing Assistant",
   ];
@@ -91,30 +91,30 @@ const Home: React.FC = () => {
 
   const testimonials = [
     {
-      name: "Dr. Rajesh Patel",
-      role: "Dean, Computer Engineering",
+      name: "Dr. Vinay  J.  Patel",
+      role: "Principal & HOD",
+      college: "Birla Vishvakarma Mahavidyalaya",
+      content:
+        "Outstanding AI capabilities that understand academic requirements perfectly. Highly recommended for educational institutions.",
+      avatar: "/VINAY_SIR.jpg",
+      rating: 5,
+    },
+    {
+      name: "Dr. Darshak  G.  Thakore",
+      role: "HOD, Computer Engineering",
       college: "Birla Vishvakarma Mahavidyalaya",
       content:
         "Vishvakarma Lekhan has revolutionized how we document our academic events. The AI-powered reports are professional and save us hours of work.",
-      avatar: "/BVM Logo-1.png",
+      avatar: "/DGT_SIR.jpg",
       rating: 5,
     },
     {
-      name: "Prof. Priya Sharma",
-      role: "Event Coordinator",
-      college: "Chandubhai Virani Mahavidyalaya",
+      name: "MAYURKUMAR M SEVAK",
+      role: "Assistant Professor",
+      college: "Birla Vishvakarma Mahavidyalaya",
       content:
         "The platform's ease of use and professional output quality has made our event documentation process incredibly efficient.",
-      avatar: "/CVM Logo.png",
-      rating: 5,
-    },
-    {
-      name: "Dr. Amit Kumar",
-      role: "Head of Department",
-      college: "Gujarat Technological University",
-      content:
-        "Outstanding AI capabilities that understand academic requirements perfectly. Highly recommended for educational institutions.",
-      avatar: "/GTU.png",
+      avatar: "/MAYUR_SIR.jpg",
       rating: 5,
     },
   ];
@@ -670,7 +670,7 @@ const Home: React.FC = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.name}
@@ -678,9 +678,9 @@ const Home: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="group"
+                  className="group h-full"
                 >
-                  <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-2xl p-6 border border-white/20 dark:border-slate-600/20 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+                  <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-2xl p-6 border border-white/20 dark:border-slate-600/20 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 flex flex-col h-full">
                     {/* Rating Stars */}
                     <div className="flex items-center mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -692,14 +692,18 @@ const Home: React.FC = () => {
                     </div>
 
                     {/* Content */}
-                    <p className="text-slate-600 dark:text-slate-300 mb-6 italic leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 mb-6 italic leading-relaxed min-h-[80px] overflow-y-auto">
                       "{testimonial.content}"
                     </p>
 
                     {/* Author */}
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-auto">
                       <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4 shadow-lg">
-                        {testimonial.name.charAt(0)}
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover rounded-full"
+                        />
                       </div>
                       <div>
                         <h4 className="font-bold text-slate-900 dark:text-white">

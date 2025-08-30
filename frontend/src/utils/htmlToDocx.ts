@@ -84,9 +84,16 @@ const getLogoImageData = async (logoId: string): Promise<ArrayBuffer | null> => 
   try {
     const logoConfig = {
       bvm: { src: '/BVM Logo-1.png', type: 'png' },
+      cvm: { src: '/CVM Logo.png', type: 'png' },
       gtu: { src: '/GTU.png', type: 'png' },
       nss: { src: '/nss.png', type: 'png' },
+      NCC: { src: '/NCC logo.png', type: 'png' },
       ieee: { src: '/IEEE BVM SB.png', type: 'png' },
+      TRS: { src: '/TRS Logo.jpg', type: 'jpg' },
+      TSA: { src: '/TSA Logo.png', type: 'png' },
+      gdg: { src: '/GDG.png', type: 'png' },
+      gfg: { src: '/GFG Logo.jpg', type: 'jpg' },
+      "ML Club": { src: '/ML Club Logo.png', type: 'png' },
       csi: { src: '/CSI.jpeg', type: 'jpg' },
       byte: { src: '/BYTE.jpeg', type: 'jpg' }
     }[logoId];
@@ -104,9 +111,16 @@ const getLogoImageData = async (logoId: string): Promise<ArrayBuffer | null> => 
 const getLogoType = (logoId: string): 'png' | 'jpg' => {
   const logoTypes = {
     bvm: 'png' as const,
+    cvm: 'png' as const,
     gtu: 'png' as const,
     nss: 'png' as const,
+    NCC: 'png' as const,
     ieee: 'png' as const,
+    TRS: 'jpg' as const,
+    TSA: 'png' as const,
+    gdg: 'png' as const,
+    gfg: 'jpg' as const,
+    'ML Club': 'png' as const,
     csi: 'jpg' as const,
     byte: 'jpg' as const
   };

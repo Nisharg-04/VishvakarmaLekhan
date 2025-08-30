@@ -52,12 +52,19 @@ const getLogoImageData = async (logoName: string): Promise<ArrayBuffer | null> =
   try {
     // Map logo names to their actual file paths in public folder
     const logoMap: Record<string, string> = {
-      'BVM': '/BVM Logo-1.png',
-      'GTU': '/GTU.png',
-      'NSS': '/nss.png',
-      'IEEE': '/IEEE BVM SB.png',
-      'CSI': '/CSI.jpeg',
-      'BYTE': '/BYTE.jpeg'
+      'bvm': '/BVM Logo-1.png',
+      'cvm': '/CVM Logo.png',
+      'gtu': '/GTU.png',
+      'nss': '/nss.png',
+      'NCC': '/NCC logo.png',
+      'ieee': '/IEEE BVM SB.png',
+      'TRS': '/TRS Logo.jpg',
+      'TSA': '/TSA Logo.png',
+      'gdg': '/GDG.png',
+      'gfg': '/GFG Logo.jpg',
+      'ML Club': '/ML Club Logo.png',
+      'csi': '/CSI.jpeg',
+      'byte': '/BYTE.jpeg'
     };
 
     const logoPath = logoMap[logoName];
@@ -151,12 +158,19 @@ const createProfessionalWordDocument = async (report: EventReport): Promise<Docu
           console.log(`Successfully loaded logo: ${logoName}`);
           // Determine logo type based on file extension
           const logoExtensions: Record<string, 'png' | 'jpg'> = {
-            'BVM': 'png',
-            'GTU': 'png',
-            'NSS': 'png',
-            'IEEE': 'png',
-            'CSI': 'jpg',
-            'BYTE': 'jpg'
+            'bvm': 'png',
+            'cvm': 'png',
+            'gtu': 'png',
+            'nss': 'png',
+            'NCC': 'png',
+            'ieee': 'png',
+            'TRS': 'jpg',
+            'TSA': 'png',
+            'gdg': 'png',
+            'gfg': 'jpg',
+            'ML Club': 'png',
+            'csi': 'jpg',
+            'byte': 'jpg'
           };
           
           logoChildren.push(

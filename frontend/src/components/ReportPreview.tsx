@@ -36,17 +36,54 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ report }) => {
                   src: "/BVM Logo-1.png",
                   alt: "Birla Vishvakarma Mahavidyalaya",
                 },
+                cvm: {
+                  src: "/CVM Logo.png",
+                  alt: "Charotar Vidya Mandal",
+                },
                 gtu: {
                   src: "/GTU.png",
                   alt: "Gujarat Technological University",
                 },
-                nss: { src: "/nss.png", alt: "National Service Scheme" },
+                nss: {
+                  src: "/nss.png",
+                  alt: "National Service Scheme",
+                },
+                NCC: {
+                  src: "/NCC logo.png",
+                  alt: "National Cadet Corps",
+                },
                 ieee: {
                   src: "/IEEE BVM SB.png",
                   alt: "IEEE BVM Student Branch",
                 },
-                csi: { src: "/CSI.jpeg", alt: "Computer Society of India" },
-                byte: { src: "/BYTE.jpeg", alt: "BYTE Society" },
+                TRS: {
+                  src: "/TRS Logo.jpg",
+                  alt: "The Robotics Society",
+                },
+                TSA: {
+                  src: "/TSA Logo.png",
+                  alt: "The Space Association",
+                },
+                gdg: {
+                  src: "/GDG.png",
+                  alt: "Google Developer Group",
+                },
+                gfg: {
+                  src: "/GFG Logo.jpg",
+                  alt: "GeeksforGeeks Student Chapter",
+                },
+                "ML Club": {
+                  src: "/ML Club Logo.png",
+                  alt: "Machine Learning Club",
+                },
+                csi: {
+                  src: "/CSI.jpeg",
+                  alt: "Computer Society of India",
+                },
+                byte: {
+                  src: "/BYTE.jpeg",
+                  alt: "BYTE Society",
+                },
               }[logoId];
 
               if (!logoConfig) return null;
