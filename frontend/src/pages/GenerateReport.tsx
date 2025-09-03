@@ -408,8 +408,20 @@ const GenerateReport: React.FC = () => {
 
   const handleDownload = () => {
     if (currentReport.generatedContent) {
+      // Use customVenue if venue is 'Custom'
+      const venueValue =
+        currentReport.venue === "Custom" && currentReport.customVenue
+          ? currentReport.customVenue
+          : currentReport.venue;
+      // Use customEventType if eventType is 'Custom'
+      const eventTypeValue =
+        currentReport.eventType === "Custom" && currentReport.customEventType
+          ? currentReport.customEventType
+          : currentReport.eventType;
       const reportData = {
         ...currentReport,
+        venue: venueValue,
+        eventType: eventTypeValue,
         id: currentReport.id || Date.now().toString(),
         attendanceSheet: attendanceSheet, // Keep for backward compatibility
         attendanceSheets: attendanceSheets.map((file) => ({
@@ -472,8 +484,20 @@ const GenerateReport: React.FC = () => {
       const summaryContent = await generateSummaryReport(currentReport);
 
       // Create summary report data without content blocks
+      // Use customVenue if venue is 'Custom'
+      const venueValue =
+        currentReport.venue === "Custom" && currentReport.customVenue
+          ? currentReport.customVenue
+          : currentReport.venue;
+      // Use customEventType if eventType is 'Custom'
+      const eventTypeValue =
+        currentReport.eventType === "Custom" && currentReport.customEventType
+          ? currentReport.customEventType
+          : currentReport.eventType;
       const summaryReportData = {
         ...currentReport,
+        venue: venueValue,
+        eventType: eventTypeValue,
         generatedContent: summaryContent,
         id: currentReport.id || Date.now().toString(),
         contentBlocks: [], // No content blocks in summary
@@ -627,6 +651,12 @@ const GenerateReport: React.FC = () => {
                     <select
                       {...register("venue", { required: "Venue is required" })}
                       className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      onChange={(e) => {
+                        setValue("venue", e.target.value);
+                        if (e.target.value !== "Custom")
+                          setValue("customVenue", "");
+                      }}
+                      value={watch("venue")}
                     >
                       <option value="">Select venue</option>
                       <option value="Auditorium">Auditorium</option>
@@ -640,7 +670,17 @@ const GenerateReport: React.FC = () => {
                         Online - Microsoft Teams
                       </option>
                       <option value="Hybrid">Hybrid</option>
+                      <option value="Custom">Custom (Type Venue)</option>
                     </select>
+                    {watch("venue") === "Custom" && (
+                      <input
+                        {...register("customVenue", {
+                          required: "Please type the venue",
+                        })}
+                        className="w-full mt-2 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Type venue, e.g., Classroom A-222"
+                      />
+                    )}
                     {errors.venue && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.venue.message}
@@ -657,6 +697,12 @@ const GenerateReport: React.FC = () => {
                         required: "Event type is required",
                       })}
                       className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      onChange={(e) => {
+                        setValue("eventType", e.target.value);
+                        if (e.target.value !== "Custom")
+                          setValue("customEventType", "");
+                      }}
+                      value={watch("eventType")}
                     >
                       <option value="">Select event type</option>
                       <option value="Seminar">Seminar</option>
@@ -666,7 +712,17 @@ const GenerateReport: React.FC = () => {
                       <option value="Webinar">Webinar</option>
                       <option value="Conference">Conference</option>
                       <option value="Competition">Competition</option>
+                      <option value="Custom">Custom (Type Event Type)</option>
                     </select>
+                    {watch("eventType") === "Custom" && (
+                      <input
+                        {...register("customEventType", {
+                          required: "Please type the event type",
+                        })}
+                        className="w-full mt-2 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Type event type, e.g., Alumni Meet"
+                      />
+                    )}
                     {errors.eventType && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.eventType.message}

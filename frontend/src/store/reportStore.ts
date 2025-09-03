@@ -22,6 +22,7 @@ export interface ContentBlock {
 }
 
 export interface EventReport {
+  customEventType?: string;
   id: string;
   title: string;
   tagline: string;
@@ -29,6 +30,7 @@ export interface EventReport {
   startDate: string;
   endDate: string;
   venue: string;
+  customVenue?: string;
   eventType: string;
   organizedBy: string;
   institute: string;
