@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/themeStore";
 import { useAuthStore } from "./store/authStore";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import { AuthModal } from "./components/AuthModal";
 import { AdminDashboard } from "./components/AdminDashboard";
@@ -61,6 +62,7 @@ function App() {
   return (
     <div className={isDark ? "dark" : ""}>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
           <Navbar onAuthRequired={() => setShowAuthModal(true)} />
           <Routes>
